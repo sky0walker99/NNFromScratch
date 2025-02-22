@@ -14,11 +14,14 @@ Activation Function
 Why use one? why not just use weights and biases without activation function?
 Without a non linear activation function the output will always be linear and we cant use any non-linear data and train the NN. The Activation function introdues non-linearity into the network.
 
-The activation function is applied to the (inputs*weights + bias )
-    Z=XW+b
-    A=Activation(Z)
+The activation function is applied to the (inputs*weights + bias ).
+- Z=XW+b
+- A=Activation(Z)
 
-RelU (if x is less than or equal to 0 then y is 0  , else if x > 0  y will be equal to x) Function
-ReLU(x)=max(0,x)
-Less Vanishing gradient problems compared to sigmoid function.
+1. RelU(if x is less than or equal to 0 then y is 0  , else if x > 0  y will be equal to x) Function - (Rectified Linear Unit)
+-ReLU(x)=max(0,x)
+-Less Vanishing gradient problems compared to sigmoid function.
 by tweaking by the bias the activation func can be offsetted.
+
+2. Softmax Activation Function
+-

@@ -36,3 +36,8 @@ class Dense_layer:
     def forward(self,inputs):
         self.output = np.dot(inputs,self.weights) + self.biases
         return self.output
+
+X = np.random.randn(3,4)
+layer1 = Dense_layer(4,3)
+layer2 = Dense_layer(3,5)
+layer1.forward(X)
