@@ -12,7 +12,8 @@ class Activation:
     Activation class implements all the required method as a template for an activation function.
     """
     def forward(self, x):
-        raise NotImplementedError("Formward should be implemented by the child")
+        raise NotImplementedError("Forward should be implemented by the child")
+
     
 class ReLU(Activation):
     """
@@ -59,9 +60,11 @@ class Tanh(Activation):
 class ELU(Activation):
     """
     Exponential Linear Unit (ELU) is an activation function used in neural networks to introduce non-linearity into the model.
-    Output in the range (0, infinity)
+    Output in the range (-alpha, infinity)
+
     """
-    def __init__(self, alpha:float):
+    def __init__(self, alpha:float = 1):
+
         super().__init__()
         self.alpha = alpha
     def forward(self, x):
