@@ -1,10 +1,10 @@
 import unittest
 import numpy as np
-from src.NN import Dense_layer
+from src.layers.dense import Dense
 
 class DenseTest(unittest.TestCase):
     def setUp(self):
-        self.layer = Dense_layer(50, 10)
+        self.layer = Dense(50, 10)
         # layer to be tested  
 
     def test_init(self):

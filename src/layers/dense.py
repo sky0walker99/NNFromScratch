@@ -1,7 +1,8 @@
 import numpy as np
 from typing import Any
+from src.layers.layer import Layer
 
-class Dense_layer:
+class Dense(Layer):
     """
     A fully connected (dense) layer in a neural network.
 
@@ -32,6 +33,9 @@ class Dense_layer:
     print(output)
     """
     def __init__(self,n_inputs : int  , n_neurons : int, seed:Any=None):
+        super().__init__()
+        # initiating the parent class
+        
         self.weights = 0.1*np.random.randn(n_inputs , n_neurons)
         self.biases = np.zeros((1,n_neurons))
 
@@ -42,7 +46,8 @@ class Dense_layer:
         self.output = np.dot(inputs,self.weights) + self.biases
         return self.output
 
-X = np.random.randn(3,4)
-layer1 = Dense_layer(4,3)
-layer2 = Dense_layer(3,5)
-layer1.forward(X)
+if __name__ == "__main__":
+    X = np.random.randn(3,4)
+    layer1 = Dense(4,3)
+    layer2 = Dense(3,5)
+    layer1.forward(X)
