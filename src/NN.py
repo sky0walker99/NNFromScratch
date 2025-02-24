@@ -1,6 +1,5 @@
 import numpy as np
-
-np.random.seed(0) # For Reproducibility
+from typing import Any
 
 class Dense_layer:
     """
@@ -17,6 +16,8 @@ class Dense_layer:
     
     n_neurons : int 
         Number of neurons in this layer.
+
+    seed : Any used to reproduce randomness in numpy
     
     Example:
     -------
@@ -30,9 +31,13 @@ class Dense_layer:
     output = layer2.output
     print(output)
     """
-    def __init__(self,n_inputs : int  , n_neurons : int ):
+    def __init__(self,n_inputs : int  , n_neurons : int, seed:Any=None):
         self.weights = 0.1*np.random.randn(n_inputs , n_neurons)
         self.biases = np.zeros((1,n_neurons))
+
+        if seed is not None:
+            np.random.seed(seed)
+            
     def forward(self,inputs):
         self.output = np.dot(inputs,self.weights) + self.biases
         return self.output
