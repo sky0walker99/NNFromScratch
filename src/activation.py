@@ -3,7 +3,7 @@ import math
 from abc import ABC , abstractmethod
 
 
-class Activation:
+class Activation(ABC):
     """
     Activation is an abstract class that is used to represent an activation function.
     Activation class implements all the required method as a template for an activation function.
@@ -27,9 +27,16 @@ class Activation:
         numpy.ndarray
             Output after applying the activation function   
         """
-        
         pass
     
+    @abstractmethod
+    def backward(self,grad_output):
+        """
+        Computes the gradient of the activation function.
+        
+        """
+        pass
+
 class ReLU(Activation):
     """
     ReLU (Rectified Linear Unit)
@@ -49,7 +56,7 @@ class ReLU(Activation):
         return self.output
     
 class LeakyReLU(Activation):
-    """_summary_
+    """
     Leaky ReLU activation function.
     
     For x > 0: LeakyReLU(x) = x
@@ -91,7 +98,7 @@ class SoftMax(Activation):
     def forward(self,x):
         if x.ndim != 2:
             raise ValueError("Softmax expects a 2D array (batch_size, num_classes)")
-        exp_values = np.exp(x - np.max(x,keepdims=True,axis=1) )
+        exp_values = np.exp(x - np.max(x,axis=1,keepdims=True) )
         normalised_score = exp_values / np.sum(exp_values,keepdims=True,axis=1)
         self.output = normalised_score
         return self.output 

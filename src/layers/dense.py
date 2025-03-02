@@ -6,10 +6,6 @@ class Dense(Layer):
     """
     A fully connected (dense) layer in a neural network.
 
-    Initialization:
-    1. When loading a trained model,saved weights and biases are used.
-    2. For a new model, weights are randomly initialized in a small range for stable training. 
-
     Parameters:
     ---------
     n_inputs : int 
@@ -31,23 +27,32 @@ class Dense(Layer):
     layer2.forward(layer1.output)
     output = layer2.output
     print(output)
+
     """
     def __init__(self,n_inputs : int  , n_neurons : int, seed:Any=None):
         super().__init__()
-        # initiating the parent class
-        
+
         self.weights = 0.1*np.random.randn(n_inputs , n_neurons)
         self.biases = np.zeros((1,n_neurons))
-
         if seed is not None:
             np.random.seed(seed)
             
     def forward(self,inputs):
         self.output = np.dot(inputs,self.weights) + self.biases
         return self.output
+    
+    def backward(self,dy):
+        """
+        
+        Parameters:
+        ---------
+        dY (or grad_output) : numpy.ndarray
+            Gradient of loss w.r.t. activated output (Y) from next layer.
 
-if __name__ == "__main__":
-    X = np.random.randn(3,4)
-    layer1 = Dense(4,3)
-    layer2 = Dense(3,5)
-    layer1.forward(X)
+        Returns:
+        -------
+        dX (or grad_input) : numpy.ndarray 
+            Gradient of loss w.r.t. input (X) to this layer. 
+        """
+        pass
+
